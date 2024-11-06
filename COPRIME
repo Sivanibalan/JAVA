@@ -1,0 +1,32 @@
+import java.util.Scanner;
+public class Main {
+    public static int gcd(int a, int b) {
+        while (b != 0) {
+            int temp = b;
+            b = a % b;
+            a = temp;
+        }
+        return a;
+    }
+    public static void coprime(int maxValue) {
+        for (int m = 2; m * m <= maxValue; m++) {
+            for (int n = 1; n < m; n++) {
+                if (gcd(m, n) == 1 && (m - n) % 2 != 0) {
+                    int a = m * m - n * n;
+                    int b = 2 * m * n;
+                    int c = m * m + n * n;
+                    if (c <= maxValue) {
+                        System.out.println(a + ", " + b + ", " + c);
+                    }
+                }
+            }
+        }
+    }
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter the maximum value for c: ");
+        int maxValue = scanner.nextInt();
+        coprime(maxValue);
+        scanner.close();
+    }
+}
