@@ -1,0 +1,35 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        int[] nums = {2, 4, 6, 11, 34, 56, 78, 100}; 
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter target number: ");
+        int tar = sc.nextInt();
+        
+        int[] res = master(nums, tar);
+        if (res.length == 2) {
+            System.out.println("Numbers found at indices: " + res[0] + " and " + res[1]);
+        } else {
+            System.out.println("Number not found");
+        }
+    }
+    
+    public static int[] master(int[] nums, int target) {
+        int s = 0;
+        int e = nums.length - 1;
+        
+        while (s < e) {
+            int sum = nums[s] + nums[e];
+            if (sum == target) {
+                return new int[]{s, e}; 
+            } else if (sum < target) {
+                s++;  
+            } else {
+                e--;  
+            }
+        }
+        
+        return new int[]{};  
+    }
+}
